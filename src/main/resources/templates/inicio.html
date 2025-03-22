@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
 </head>
 <body>
     <header>
         <nav>
             <h1>La Casa de Electricidad</h1>
             <div class="nav-buttons">
-                <a href="listarfabricas.html" class="btn">Listar fábricas</a>
-                <a href="listararticulos.html" class="btn">Listar artículos</a>
-                <a href="login.html" class="btn logout">Cerrar sesión</a>
+                <a th:href="@{/listarfabricas}" class="btn">Listar fábricas</a>
+                <a th:href="@{/listararticulos}" class="btn">Listar artículos</a>
+                <a th:href="@{/login}" class="btn logout">Cerrar sesión</a>
             </div>
         </nav>
     </header>
