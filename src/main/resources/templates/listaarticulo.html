@@ -34,40 +34,15 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Fábrica</th>
-                    <th>Acciones</th>
+                    <!-- <th>Acciones</th> -->
                 </tr>
             </thead>
-            <tbody>
+            <tbody th:each="articulo : ${articulos}">
                 <tr>
-                    <td>1</td>
-                    <td>Artículo ABC</td>
-                    <td>Descripción del artículo ABC</td>
-                    <td>Fábrica XYZ</td>
-                    <td>
-                        <a href="#" class="btn btn-edit">
-                            <i class="fas fa-edit"></i> Modificar
-                        </a>
-                        <form action="#" method="POST" style="display: inline;">
-                            <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro?')">
-                                <i class="fas fa-trash-alt"></i> Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Artículo XYZ</td>
-                    <td>Descripción del artículo XYZ</td>
-                    <td>Fábrica ABC</td>
-                    <td>
-                        <a href="#" class="btn btn-edit">
-                            <i class="fas fa-edit"></i> Modificar
-                        </a>
-                        <form action="#" method="POST" style="display: inline;">
-                            <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro?')">
-                                <i class="fas fa-trash-alt"></i> Eliminar
-                            </button>
-                        </form>
+                    <th scope="row" th:text="${articulo.nroArticulo}"></th>
+                    <td th:text="${articulo.nombreArticulo}"></td>
+                    <td th:text="${articulo.descripcionArticulo}"></td>
+                    <td th:text="${articulo.fabrica.nombreFabrica}"></td>
                     </td>
                 </tr>
             </tbody>

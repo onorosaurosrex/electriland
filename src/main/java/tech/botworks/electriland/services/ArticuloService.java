@@ -68,7 +68,7 @@ public class ArticuloService {
   }
 
   public List<Articulo> listarArticulos() {
-    return articuloRepository.findAll();
+    return articuloRepository.findAllByOrderByNroArticuloAsc();
   }
 
   @Transactional
