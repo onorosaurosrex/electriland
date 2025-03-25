@@ -63,7 +63,7 @@ public class FabricaService {
 
   public void validarExistencia(String id, int metodo) throws MyException {
     
-    if (fabricaRepository.findByNombreFabrica(id)!=null && metodo==1){
+    if (fabricaRepository.findByNombreFabrica(id).isPresent() && metodo==1){
           throw new MyException ("Esta fábrica ya existe en el sistema.");
   } 
   else if (!fabricaRepository.findById(id).isPresent()&& metodo==2){ 

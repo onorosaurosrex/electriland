@@ -37,15 +37,17 @@ public class ArticuloService {
   public void crearArticulo(String nombreArticulo, String descripcionArticulo, String fabrica) throws MyException {
     validarNulidad(null, nombreArticulo, descripcionArticulo, fabrica, 1);
     validarExistencia(null, nombreArticulo, fabrica, 1);
-    Optional<Fabrica> respuesta = fabricaRepository.findByNombreFabrica(fabrica);
+
+    Optional<Fabrica> respuesta = fabricaRepository.findById(fabrica);
     if (respuesta.isPresent()) {
       Articulo articulo = new Articulo();
       articulo.setNombreArticulo(nombreArticulo);
       articulo.setDescripcionArticulo(descripcionArticulo);
       articulo.setNroArticulo(atomicInteger.incrementAndGet());
       articulo.setFabrica(respuesta.get());
-
       articuloRepository.save(articulo);
+    } else {
+      throw new MyException("La fábrica con ID " + fabrica + " no existe.");
     }
   }
 
@@ -91,12 +93,11 @@ public class ArticuloService {
   }
 
   public void validarExistencia(String id, String nombre, String fabrica, int metodo) throws MyException {
-
-    if (articuloRepository.findById(id) == null && metodo == 2) {
+    if (metodo == 2 && (id == null || id.isEmpty() || articuloRepository.findById(id).isEmpty())) {
       throw new MyException("El artículo que quieres modificar no está en el sistema.");
-    } else if (articuloRepository.findByNombreArticulo(nombre) != null && metodo == 1) {
+    } else if (metodo == 1 && articuloRepository.findByNombreArticulo(nombre) != null) {
       throw new MyException("Este nombre ya se encuentra en el sistema.");
-    } else if (fabricaRepository.findByNombreFabrica(fabrica) == null && metodo == 2) {
+    } else if (metodo == 2 && (fabrica == null || fabrica.isEmpty() || fabricaRepository.findById(fabrica).isEmpty())) {
       throw new MyException("La fabrica no se encuentra en el sistema.");
     }
   }

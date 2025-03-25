@@ -25,6 +25,7 @@ public class PortalController {
     public String registrousuario() {
       return "registrousuario";
     }
+
 }
     
     
