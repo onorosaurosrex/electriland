@@ -11,7 +11,6 @@ public class ElectrilandApplication {
     SpringApplication.run(ElectrilandApplication.class, args);
 
   }
-
-
+  
   }
 
